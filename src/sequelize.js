@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize');
 
 module.exports = function (app) {
-  const connectionString = app.get('mysql');
-  const sequelize = new Sequelize(connectionString, {
+  const sequelize = new Sequelize(app.get('mysql'), {
     dialect: 'mysql',
-    password: process.env.DB_PSW || '@HaLesCrocodiles13',
+    password: process.env.DB_PSW || app.get('dbPsw'),
     logging: true,
     define: {
       freezeTableName: true
